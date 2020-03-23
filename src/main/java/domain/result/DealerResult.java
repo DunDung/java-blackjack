@@ -21,8 +21,9 @@ public class DealerResult {
 			.map(UserResult::getReverseResult)
 			.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-		Arrays.stream(MatchResult.values())
-			.forEach(key -> result.putIfAbsent(key, INIT_MATCH_COUNT));
+		for (MatchResult key : MatchResult.values()) {
+			result.putIfAbsent(key, INIT_MATCH_COUNT);
+		}
 
 		return result;
 	}
